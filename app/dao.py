@@ -1,5 +1,5 @@
 import logging
-from db_credentials import get_session
+from .db_credentials import get_session
 from sqlalchemy.exc import IntegrityError, OperationalError, DataError
 
 class BaseDAO(object):

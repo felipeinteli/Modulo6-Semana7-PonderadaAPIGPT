@@ -28,35 +28,6 @@ class HistoryDAO(BaseDAO):
         return self._session.add(entity)
     
     
-    # def update_history(self, id, map_):
-    #     """
-    #     Update a history in the Database
-    #     """
-    #     entity = self._find_entity_by_id(id)
-    #     if entity:
-    #         for key, value in map_.items():
-    #             setattr(entity, key, value)
-    #         return self._build_model_from_entity(entity)
-    #     else:
-    #         return None
-        
-    # def delete_history(self, id):
-    #     """
-    #     Delete a history in the Database
-    #     """
-    #     entity = self._find_entity_by_id(id)
-    #     if entity:
-    #         self._session.delete(entity)
-    #         return True
-    #     else:
-    #         return False
-        
-    # def delete_all_historys(self):
-    #     entities = self.find_all_entity()
-    #     for entity in entities:
-    #         self._session.delete(entity)
-        return True
-
     def find_all(self):
         entities = self.find_all_entity()
         return self._build_models_from_entities(entities)
