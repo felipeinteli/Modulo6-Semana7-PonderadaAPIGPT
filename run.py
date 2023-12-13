@@ -19,6 +19,15 @@ def send_prompt():
     except Exception as e:
         logging.error(f"Erro ao criar empregado: {e}")
         return jsonify({"status": "error", "message": str(e)}), 500
+    
+@app.route('/get_all', methods=['GET'])
+def get_historys():
+    try:
+        historys = HistoryServices.find_all()
+        return jsonify({"status": "success", "historys": historys}), 200
+    except Exception as e:
+        logging.error(f"Erro ao criar empregado: {e}")
+        return jsonify({"status": "error", "message": str(e)}), 500
 
 
 
