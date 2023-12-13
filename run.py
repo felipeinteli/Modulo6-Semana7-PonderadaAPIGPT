@@ -10,8 +10,8 @@ history_services = HistoryServices()
 @app.route('/send_prompt', methods=['POST'])
 def send_prompt():
     try:
-        history_map = json.loads(request.data)
-        success = HistoryServices.create_history(history_map)
+        prompt = json.loads(request.data)
+        success = HistoryServices.create_history(prompt)
         return jsonify({"status": "success" if success else "failed"}), 200
     except json.JSONDecodeError:
         logging.error("JSON inválido recebido.")
