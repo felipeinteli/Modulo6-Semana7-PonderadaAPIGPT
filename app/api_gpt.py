@@ -6,7 +6,7 @@ import logging
 
 def gerar_historias(prompt):
 
-    KEY_GPT = 
+    KEY_GPT = "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"
     
     logging.info("Gerando histórias...API_GPT")
     headers = {"Authorization": f"Bearer {KEY_GPT}", "Content-Type": "application/json"}

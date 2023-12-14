@@ -9,6 +9,8 @@ history_services = HistoryServices()
 
 class Prompt(BaseModel):
     prompt: str
+    resposta: Optional[str] = None
+    id: Optional[int] = None
 
 @app.post('/send_prompt')
 async def send_prompt(prompt: Prompt):
@@ -19,6 +21,25 @@ async def send_prompt(prompt: Prompt):
     except Exception as e:
         logging.error(f"Erro ao criar empregado: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+    
+@app.put('/update_prompt')
+async def update_prompt(prompt: Prompt):
+    try:
+        success = await HistoryServices.update_history(prompt)
+        return {"status": "success" if success else "failed"}
+    except Exception as e:
+        logging.error(f"Erro ao criar empregado: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.delete('/delete_prompt')
+async def delete_prompt(id: int):
+    try:
+        success = await HistoryServices.delete_history(id)
+        return {"status": "success" if success else "failed"}
+    except Exception as e:
+        logging.error(f"Erro ao criar empregado: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+                        
 
 @app.get('/get_all')
 async def get_historys():

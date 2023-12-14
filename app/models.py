@@ -26,6 +26,21 @@ class HistoryDAO(BaseDAO):
         logging.error(entity)
         return self._session.add(entity)
     
+    def update_history(self, map_):
+
+        entity = self._session.query(HistoryEntity).filter(HistoryEntity.id == map_['id']).first()
+        entity.prompt = map_['prompt']
+        entity.resposta = map_['resposta']
+        return entity
+    
+    def delete_history(self, id):
+        entity = self._session.query(HistoryEntity).filter(HistoryEntity.id == id).first()
+        return self._session.delete(entity)
+    
+    def find_by_id(self, id):
+        entity = self._session.query(HistoryEntity).filter(HistoryEntity.id == id).first()
+        return self._build_model_from_entity(entity)
+    
     
     def find_all(self):
         entities = self.find_all_entity()

@@ -32,7 +32,43 @@ class HistoryServices:
             return False
 
 
+    def update_history(json):
+        try:
+            logging.info("Atualizando história...Service")
+            history_map = {
+                'id': json['id'],
+                'prompt': json['prompt'],
+                'resposta': json['resposta']
+            }
+            try:
+                logging.info("Atualizando história...DAO")
+                with models.HistoryDAO() as dao:
+                    dao.update_history(history_map)
+                return True
+            except (ValueError, TypeError) as e:
+                return False
+            except Exception as e:
+                return False
+        except Exception as e:
+            logging.error(f"Erro ao atualizar na função update_history: {e}")
+            return False
         
+    def delete_history(id):
+        try:
+            logging.info("Deletando história...Service")
+            try:
+                logging.info("Deletando história...DAO")
+                with models.HistoryDAO() as dao:
+                    dao.delete_history(id)
+                return True
+            except (ValueError, TypeError) as e:
+                return False
+            except Exception as e:
+                return False
+        except Exception as e:
+            logging.error(f"Erro ao deletar na função delete_history: {e}")
+            return False
+
     def find_all(self):
         try:
             with models.HistoryDAO() as dao:
