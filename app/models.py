@@ -19,12 +19,11 @@ class HistoryDAO(BaseDAO):
         """
         #logging.error(f"entrou create_history dao")
         entity = HistoryEntity(
-            name = map_['name'],
-            address = map_['address'],
-            cep = map_['cep'],
-            cnpj = map_['cnpj']
+            prompt = map_['prompt'],
+            resposta = map_['resposta']
+
         )
-        #logging.error(entity)
+        logging.error(entity)
         return self._session.add(entity)
     
     

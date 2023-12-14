@@ -12,6 +12,6 @@ Base = declarative_base()
 class HistoryEntity(Base):
     __tablename__ = 'historys_tb'
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    prompt = Column(String(200), nullable=True)
-    resposta = Column(String(50000), nullable=True)
+    id = Column(Integer, primary_key=True, autoincrement=True, index=True)
+    prompt = Column(String(200), nullable=True, index=True)
+    resposta = Column(String(50000), nullable=True, index=True)
